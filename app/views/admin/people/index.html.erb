@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="page-header">
+    <div class="pull-right pagination-sm">
+      <%= link_to 'New Person', new_admin_person_path, class: 'btn btn-sm btn-default' %>
+      <%= paginate @people, window: 1, outer_window: 0 %> <!--  -->
+    </div>
+    <h1><%= raw @title || 'Listing people' %></h1>
+  </div>
+</div>
+
+<div class="row">
+  <table class="table table-condensed table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>E-mail</th>
+        <th>Profession</th>
+        <th>Years in school</th>
+        <th class="three-actions"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @people.each do |person| %>
+        <tr>
+          <td>
+            <% if person.indexable? %>
+              <i class="fa fa-eye" title="Can be found in public access."></i>
+            <% else %>
+              <i class="fa fa-eye-slash text-warning" title="Can not be found in public access."></i>
+            <% end %>
+            <% unless person.picture? %>
+              <i class="fa fa-picture-o text-danger" title="Do not have a picture."></i>
+            <% end %>
+          </td>
+          <td><%= person.first_name %></td>
+          <td><%= person.last_name %></td>
+          <td><%= person.email %></td>
+          <td><%= person.profession %></td>
+          <td><%= person.year_entrance.to_s + ' - ' + person.year_out.to_s %></td>
+          <td>
+            <%= link_to 'Show', [:admin, person], class: 'btn btn-info btn-xs' %>
+            <%= link_to 'Edit', edit_admin_person_path(person), class: 'btn btn-primary btn-xs' %>
+            <%= link_to 'Destroy', [:admin, person], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <div class="text-center">
+    <%= paginate @people %> <br/>
+    <%= page_entries_info @people %>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+# Created by http://gitignore.io
+
+### Rails ###
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+.rspec
+.rvmrc
+.ruby-gemset
+/.bundle
+/vendor/bundle
+/log/*
+/tmp/*
+/db/*.sqlite3
+/public/system/*
+/public/assets/*
+/public/pictures/*
+/coverage/
+/spec/tmp/*
+**.orig
+rerun.txt
+pickle-email-*.html
+.project
+!.keep
+
+### Ruby ###
+*.gem
+*.rbc
+.bundle
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+
+# YARD artifacts
+.yardoc
+_yardoc
+doc/
+
+### Istanbul ###
+/coverage_js/
+
+### IntelliJ ###
+*.iml
+*.ipr
+*.iws
+.idea/
+
+### RubyMine ###
+.idea/workspace.xml
+
+### SublimeText ###
+*.sublime-project
+*.sublime-workspace

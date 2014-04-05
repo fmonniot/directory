@@ -1,0 +1,73 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides: trombint
+# Required-Start: $all
+# Required-Stop: $network $local_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start the trombint unicorns at boot
+# Description: Enable trombint at boot time.
+### END INIT INFO
+
+set -u
+set -e
+
+# Change these to match your app:
+USER_NAME='trombint'
+RVM_ROOT="/home/trombint/.rvm"
+RUBY_VERSION="ruby-2.0.0-p247@trombint"
+APP_ROOT="/home/trombint/trombint"
+ENV=production
+
+
+# Don't change from this
+PID="$APP_ROOT/tmp/pids/unicorn.pid"
+SOURCE_RVM="source $RVM_ROOT/environments/$RUBY_VERSION"
+UNICORN_OPTS="-D -E $ENV -c $APP_ROOT/config/unicorn.rb"
+
+CMD="cd $APP_ROOT; $SOURCE_RVM ; RAILS_ENV=production unicorn $UNICORN_OPTS"
+
+old_pid="$PID.oldbin"
+
+cd $APP_ROOT || exit 1
+
+sig () {
+    test -s "$PID" && kill -$1 `cat $PID`
+}
+
+oldsig () {
+    test -s $old_pid && kill -$1 `cat $old_pid`
+}
+
+case ${1-help} in
+    start)
+        sig 0 && echo >&2 "Already running" && exit 0
+        su -c "$CMD" "$USER_NAME"
+    ;;
+    stop)
+        sig QUIT && exit 0
+        echo >&2 "Not running"
+    ;;
+    force-stop)
+        sig TERM && exit 0
+        echo >&2 "Not running"
+    ;;
+    restart|reload)
+        sig HUP && echo reloaded OK && exit 0
+        echo >&2 "Couldn't reload, starting '$CMD' instead"
+        su -c "$CMD" "$USER_NAME"
+    ;;
+    upgrade)
+        sig USR2 && exit 0
+        echo >&2 "Couldn't upgrade, starting '$CMD' instead"
+        su -c "$CMD" "$USER_NAME"
+    ;;
+    rotate)
+        sig USR1 && echo rotated logs OK && exit 0
+        echo >&2 "Couldn't rotate logs" && exit 1
+    ;;
+    *)
+        echo >&2 "Usage: $0 <start|stop|restart|upgrade|rotate|force-stop>"
+        exit 1
+    ;;
+esac

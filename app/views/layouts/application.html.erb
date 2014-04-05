@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" data-ng-app="app">
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Tromb'INT | Search whoever you want. Instantly.</title>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %> alert-dismissable large-alert">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <%= value %>
+  </div>
+  <% end %>
+
+  <!-- Main Page Content -->
+
+  <%= yield %>
+
+  <!-- End Main Content -->
+
+
+  <!-- Footer -->
+
+  <footer class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <hr />
+      <p class="pull-right"><a href="<%= developer_url %>">Developers</a> | <a href="mailto:minet@tem-tsp.eu">Contact us</a></p>
+
+      <p>Licensed under the <a href="http://opensource.org/licenses/MIT">MIT License</a> |
+         Powered by the <a href="https://www.minet.net">MiNET.net network</a>
+      </p>
+    </div>
+  </footer>
+
+  <%= javascript_include_tag 'application' %>
+
+  <!-- End Footer -->
+</body>
+</html>

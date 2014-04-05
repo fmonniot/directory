@@ -1,0 +1,7 @@
+Hello <%= @person.first_name %> <%= @person.last_name %>
+==========================================
+
+Someone has made a request to delete you from Tromb'INT.
+If it's really what you wants follow the link below, otherwise ignore this mail.
+
+<%= people_confirm_deletion_url(key: @person.key) %>

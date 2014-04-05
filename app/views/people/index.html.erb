@@ -1,0 +1,68 @@
+<article data-ng-controller="PeopleController">
+  <!-- Search Form -->
+
+  <header class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Tromb'INT<em class="beta">beta</em> <small>Search whoever you want. Instantly.</small></h1>
+
+      <form class="form-inline col-md-8 col-md-offset-2" name="form" role="form">
+        <div class="input-group">
+          
+          <input type="text" class="form-control input-lg"  placeholder="Your search terms" data-ng-model="query" data-ng-change="reload()" name="query">
+
+          <span class="input-group-addon">
+            <select name="query" data-ng-model="type" data-ng-init="n" data-ng-change="reload()" title="order your query" class="form-control">
+              <option value="n" selected="selected">By names</option>
+              <option value="i">Initials only (subli)</option>
+            </select>
+          </span>
+
+        </div>
+      </form>
+
+    </div>
+  </header>
+
+  <!-- End Search Form -->
+
+  <!-- Results -->
+
+  <div class="main" data-infinite-scroll="people.loadMore()" data-infinite-scroll-distance="1" data-infinite-scroll-disabled="people.pending || people.no_more_result">
+
+    <div class="person" data-ng-repeat="person in people.items">
+      <div class="years">
+        {{ person.year_entrance}} - {{ person.year_out &amp;&amp; person.year_out || '&nbsp;' }}
+      </div>
+
+      <div class="tools dropdown">
+          <a href="#" class="dropdown-toggle glyphicon glyphicon-cog"></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" data-ng-click="delete(person)"><span class="glyphicon glyphicon-trash"></span> Remove this person</a></li>
+          </ul>
+      </div>
+
+      <div class="vcard">
+        <%= image_tag 'unknown.jpg', 'data-ng-src'=> '/pictures/mdpi/{{ person.picture_src }}.jpg', alt: '{{ person.first_name }}' %>
+        <ul class="list-unstyled">
+          <li class="fn">{{ person.first_name }} {{ person.last_name }}</li>
+          <li>{{ person.profession }}</li>
+          <li>{{ person.school }}</li>
+          <li data-ng-hide="!person.location &amp;&amp; !person.phone">
+            <span data-ng-hide="person.location">{{ person.location }}</span>
+            <span data-ng-hide="!person.location || !person.phone">,</span>
+            <span data-ng-hide="person.phone">{{ person.phone }}</span>
+          </li>
+          <li><a href="mailto:{{person.email}}">{{ person.email }}</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- End Results -->
+
+  <!-- Special case -->
+    <div class="centered" data-ng-hide="people.items.length" ><em>No results</em></div>
+    <div class="centered" data-ng-show="people.pending">Loading...</div>
+  <!-- End Special case -->
+</article>

@@ -1,0 +1,59 @@
+@import "twitter/bootstrap";
+
+@import "font-awesome";
+
+@import "sb-admin";
+
+.dangerous {
+  color: lighten($text-color, 25%);
+  margin-bottom: 30px;
+
+  &:before {
+    font-family: FontAwesome;
+    content: $fa-var-exclamation-triangle;
+    font-size: 1.5em;
+    margin-right: 0.3em;
+    color: lighten($text-color, 45%);
+  }
+}
+
+p.start-with-input {
+  margin-top: ($input-height-base - $line-height-computed) / 2;
+  text-align: justify;
+}
+
+.page-header {
+  .pagination {
+    margin-top: 0;
+    @include pagination-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $border-radius-small);
+  }
+  .btn { vertical-align: top; }
+}
+
+.navbar-static-top {
+  margin-bottom: 0
+}
+
+.table .three-actions {
+  min-width: 159px;
+}
+
+.flot-label-leaning .xAxis div.tickLabel {
+  border-top: 1px solid #BBB;
+
+  /* Rotate Axis Labels */
+  transform: translateX(65%) translateY(-30%) rotate(60deg); /* CSS3 */
+  transform-origin: 0 0;
+
+  -ms-transform: translateX(65%) translateY(-30%) rotate(60deg); /* IE */
+  -ms-transform-origin: 0 0;
+
+  -moz-transform: translateX(65%) translateY(-30%) rotate(60deg); /* Firefox */
+  -moz-transform-origin: 0 0;
+
+  -webkit-transform: translateX(60%) translateY(-30%) rotate(60deg); /* Safari and Chrome */
+  -webkit-transform-origin: 0 0;
+
+  -o-transform: translateX(65%) translateY(-30%) rotate(60deg); /* Opera */
+  -o-transform-origin: 0 0;
+}

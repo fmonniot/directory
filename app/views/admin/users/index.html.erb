@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="page-header">
+    <div class="pull-right pagination-sm">
+      <%= link_to 'Invite someone to join the team !', new_user_invitation_path, class: 'btn btn-sm btn-default' %>
+    </div>
+    <h1>Listing users</h1>
+  </div>
+</div>
+
+<div class="row">
+  <table class="table table-condensed table-striped">
+    <thead>
+    <tr>
+      <th>Email</th>
+      <th>State</th>
+      <th>Sign-in at</th>
+      <th>Last Sign-in at</th>
+      <th>Sign-in IP</th>
+      <th>Last Sign-in IP</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td>
+          <% if user.invited_to_sign_up? %>
+            Invited to sign up
+          <% elsif user.invitation_accepted? %>
+            Invitation accepted
+          <% elsif user.accepted_or_not_invited? %>
+            accepted or not invited
+          <% end %>
+        </td>
+        <td>
+          <%= user.current_sign_in_at || '-' %>
+        </td>
+        <td>
+          <%= user.last_sign_in_at || '-' %>
+        </td>
+        <td>
+          <%= user.current_sign_in_ip || '-' %>
+        </td>
+        <td>
+          <%= user.last_sign_in_ip || '-' %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <div class="text-center">
+    <%= paginate @users %> <br/>
+    <%= page_entries_info @users %>
+  </div>
+</div>

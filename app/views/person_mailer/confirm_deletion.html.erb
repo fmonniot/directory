@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello <%= @person.first_name %> <%= @person.last_name %></h1>
+    <p>
+      Someone has made a request to delete you from <a href="https://trombint.minet.net">Tromb'INT</a>.<br/>
+      If it's really what you wants follow the link below, otherwise ignore this mail.
+    </p>
+    <p>
+      <a href="<%= people_confirm_deletion_url(key: @person.key) %>">Confirm the deletion</a>
+    </p>
+  </body>
+</html>

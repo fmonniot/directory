@@ -1,0 +1,196 @@
+// responsive design mixins
+@mixin respond-to-max($breakpoint) {
+    @media only screen and (max-width: $breakpoint + px) { @content; }
+}
+@mixin respond-to-min($breakpoint) {
+    @media only screen and (min-width: $breakpoint + px) { @content; }
+}
+
+
+@import url("//fonts.googleapis.com/css?family=Anaheim");
+@import "twitter/bootstrap";
+
+html{
+  background: asset-data-url("satinweave.png");
+  background-size: 200px 200px;
+  height: 100%;
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+            (min-resolution: 192dpi) {
+      background: no-repeat top left asset-data-url("satinweave@2x.png");
+  }
+}
+
+body {
+  background: none;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Anaheim', sans-serif;
+  
+  small {
+    display: inline-block;
+    line-height:100%;
+    color: #888;
+  }
+}
+
+.large-alert { text-align: center; }
+
+header {
+  margin-bottom: 1em ;
+  
+  .input-group { width: 100%; }
+  .input-lg { height: 48px; }
+  .input-group-addon { width: 30%; }
+}
+
+.beta {
+  position:relative;
+  font-size: 11pt;
+  color: red;
+  font-style: normal;
+  left: -5px;
+}
+
+.modal-footer {
+  margin-top:0;
+}
+
+.modal-body div:last-child {
+  margin-bottom:0;
+}
+
+.modal-footer.no-body { border-top: none;  }
+
+[class*="column"] + [class*="column"]:last-child {float:left;}
+.person {
+  float:left;
+  padding:0;
+  position:relative;
+  width: 320px;
+
+  img {
+    width: 107px;
+    height: 143px;
+    background: asset-data-url("unknown.jpg");
+    text-align:center;
+    font-style:italic;
+  }
+  
+  .years {
+    position:absolute;
+    bottom:2px;
+    right:4px;
+    color:#ededed;
+    font-size:30pt;
+    font-weight:bold;
+    z-index:0;
+  }
+  .tools {
+    position:absolute;
+    top:8px;
+    right:8px;
+    z-index: 20;
+
+    a.glyphicon {
+      color: #ededed;
+      font-size: 13pt;
+
+      &:hover {
+        color:$link-color;
+        text-decoration: none;
+      }
+    }
+
+    &.open a.glyphicon {
+      color:$link-color;
+      text-decoration: none;
+    }
+
+    li a { padding-left: 10px; }
+  }
+  
+  .vcard {
+    position:relative;
+    padding: 8px;
+    margin:0;
+    border: 1px solid #DDDDDD;
+    height: 160px;
+    background: white;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+
+    img {
+      margin-right:0.5em;
+      z-index:10;
+      float:left;
+      border:1px solid #eee;
+    }
+  }
+  
+  ul.list-unstyled {
+    float:left;
+    margin:0;
+    z-index:100;
+    word-wrap: break-word;
+    width: 195px;
+  }
+
+}
+
+.centered {
+  float: left;
+  text-align: center;
+  width: 100%;
+}
+
+/* One card without lateral border */
+@include respond-to-max(338) {
+  .person {
+    margin: 0 0 10px;
+
+    .years {
+      bottom:3px;
+      right:3px;
+    }
+    .vcard {
+      border-right:none;
+      border-left:none;
+      padding: 3px;
+      width:100%;
+    }
+    img { margin-right: 3px; }
+  }
+}
+
+/* One card with lateral border and margin */
+@include respond-to-min(338) {
+  .main { max-width: 338px; }
+  .person {
+    width: 330px;
+    margin:0 4px 20px;
+  }
+}
+
+.main {
+  max-width:100%;
+  margin: 0 auto;
+
+    /* Two cards layout */
+  @include respond-to-min(691) { max-width: 676px; }
+    /* Three cards layout */
+  @include respond-to-min(1045) { max-width: 1014px; }
+    /* Four cards layout */
+  @include respond-to-min(1367) { max-width: 1352px; }
+    /* Five cards layout */
+  @include respond-to-min(1704) { max-width: 1690px; }
+    /* Five cards layout */
+  @include respond-to-min(2043) { max-width: 2028px; }
+    /* Multi cards layout */
+  @include respond-to-min(2381) { max-width: 10000px; }
+}
+
+@import "admin/static";

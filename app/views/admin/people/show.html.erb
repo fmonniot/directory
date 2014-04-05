@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="page-header">
+    <h1><%= @person.first_name + ' ' + @person.last_name %></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-2">
+    <p id="notice"><%= notice %></p>
+
+    <p class="row">
+      <strong class="col-sm-4">First name</strong>
+      <span class="col-sm-8"><%= @person.first_name %></span>
+    </p>
+    <p class="row">
+      <strong class="col-sm-4">Last name</strong>
+      <span class="col-sm-8"><%= @person.last_name %></span>
+    </p>
+    <p class="row">
+      <strong class="col-sm-4">E-mail</strong>
+      <span class="col-sm-8"><%= @person.email %></span>
+    </p>
+    <p class="row">
+      <strong class="col-sm-4">Profession</strong>
+      <span class="col-sm-8"><%= @person.profession %></span>
+    </p>
+    <p class="row">
+      <strong class="col-sm-4">Year entrance</strong>
+      <span class="col-sm-8"><%= @person.year_entrance %></span>
+    </p>
+    <p class="row">
+      <strong class="col-sm-4">Year out</strong>
+      <span class="col-sm-8"><%= @person.year_out || 'none' %></span>
+    </p>
+    <p class="row">
+      <span class="col-sm-8 col-md-offset-4">
+      <% if @person.indexable? %>
+        Can be found in public access.
+      <% else %>
+        Can not be found in public access.
+      <% end %>
+      </span>
+    </p>
+    <% if @person.attribute_present?(:key) %>
+    <p class="row">
+      <span class="col-sm-8 col-md-offset-4">
+        Have requested to be hidden.
+      </span>
+    </p>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag(@person.picture_url(:xhdpi), class: 'img-thumbnail') if @person.picture? %>
+  </div>
+</div>
+
+<div class="row">
+  <hr/>
+  <p class="col-md-8">
+    <%= link_to 'Edit', edit_admin_person_path(@person), class: 'btn btn-primary' %>
+    <%= link_to 'Back', admin_people_path, class:'btn btn-default ' %>
+  </p>
+</div>

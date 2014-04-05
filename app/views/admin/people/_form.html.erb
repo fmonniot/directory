@@ -1,0 +1,76 @@
+
+<%= form_for [:admin, @person], html: { class: 'form form-horizontal'} do |f| %>
+  <% if @person.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@person.errors.count, 'error') %> prohibited this person from being saved:</h2>
+
+      <ul>
+      <% @person.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :first_name, class: 'col-sm-4 control-label'  %>
+    <div class="col-sm-8">
+      <%= f.email_field :first_name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :last_name, class: 'col-sm-4 control-label'  %>
+    <div class="col-sm-8">
+      <%= f.email_field :last_name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, class: 'col-sm-4 control-label'  %>
+    <div class="col-sm-8">
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :profession, class: 'col-sm-4 control-label'  %>
+    <div class="col-sm-8">
+      <%= f.email_field :profession, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :year_entrance, class: 'col-sm-4 control-label'  %>
+    <div class="col-sm-3">
+      <%= f.email_field :year_entrance, class: 'form-control' %>
+    </div>
+
+    <%= f.label :year_out, class: 'col-sm-2 control-label'  %>
+    <div class="col-sm-3">
+      <%= f.email_field :year_out, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :picture, class: 'col-sm-4 control-label'  %>
+    <div class="col-sm-8">
+      <%= f.file_field :picture %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-8 col-sm-offset-4">
+      <p class="help-block">Or enter an url where pick up a file:</p>
+      <%= f.text_field :remote_picture_url, class: 'form-control', placeholder: 'File URL' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-8 col-sm-offset-4">
+      <%= f.check_box :indexable %> <%= f.label :indexable %>
+    </div>
+  </div>
+
+  <%= f.submit 'Create', class: 'btn btn-primary' %>
+<% end %>
+
