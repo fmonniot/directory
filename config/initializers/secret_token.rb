@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Directory::Application.config.secret_key_base = ''
+Directory::Application.config.secret_key_base = 'REPLACE_WITH_A_REAL_SECRET_TOKEN'
