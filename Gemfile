@@ -7,7 +7,7 @@ ruby '2.0.0'
 gem 'rails', '~> 4.0'
 
 # Load Mongoid from github to be compatible with Rails 4
-gem 'mongoid', github: 'mongoid/mongoid'
+gem 'mongoid', '~> 4.0.0.beta'
 
 # Pagination made simpler
 gem 'kaminari'
@@ -53,7 +53,7 @@ gem 'tire'
 gem 'tire-am_serializers'
 
 # Client library for LDAP connection
-gem 'net-ldap', git: 'https://github.com/ruby-ldap/ruby-net-ldap.git'
+gem 'net-ldap', '~> 0.6'
 
 # Use devise as authentication solution
 gem 'devise'
@@ -62,7 +62,7 @@ gem 'devise_invitable'
 # Use Carrierwave Image uploader
 gem 'carrierwave'
 gem 'carrierwave-mongoid'
-gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
+gem 'mongoid-grid_fs', '~> 2.1'
 
 # Image processing using ImageMagick
 gem 'mini_magick'
