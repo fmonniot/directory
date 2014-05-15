@@ -259,7 +259,7 @@ DEPENDENCIES
   mongoid-grid_fs (~> 2.1)
   net-ldap (~> 0.6)
   quiet_assets
-  rails (~> 4.0)
+  rails (~> 4.1)
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)
   sdoc
