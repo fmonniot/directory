@@ -46,7 +46,7 @@ gem 'font-awesome-sass'
 gem 'whenever'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.0'
 
 # Client library for elasticsearch
 gem 'tire'
