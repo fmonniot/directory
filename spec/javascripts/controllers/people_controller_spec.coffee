@@ -28,10 +28,14 @@ describe "PeopleController", ->
     expect($scope.delete).toBeDefined()
 
   it "reload correctly", ->
-    $scope.reload()
+    runs ->
+      $scope.reload()
 
-    expect($scope.people).toBeDefined()
-    expect($rootScope.$broadcast).toHaveBeenCalledWith('reload-infiniteScroll')
+    waits 200
+
+    runs ->
+      expect($scope.people).toBeDefined()
+      expect($rootScope.$broadcast).toHaveBeenCalledWith('reload-infiniteScroll')
 
   it "open the delete modal with correct params", ->
     spyOn($modal, 'open')
