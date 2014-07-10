@@ -7,7 +7,7 @@ ruby '2.0.0'
 gem 'rails', '~> 4.1'
 
 # Load Mongoid from github to be compatible with Rails 4
-gem 'mongoid', '~> 4.0.0.beta'
+gem 'mongoid', '~> 4.0.0'
 
 # Pagination made simpler
 gem 'kaminari'
@@ -62,7 +62,6 @@ gem 'devise_invitable'
 # Use Carrierwave Image uploader
 gem 'carrierwave'
 gem 'carrierwave-mongoid'
-gem 'mongoid-grid_fs', '~> 2.1'
 
 # Image processing using ImageMagick
 gem 'mini_magick'
@@ -73,7 +72,7 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails', '~> 3.0'
   gem 'fabrication'
   gem 'teaspoon'
   gem 'zeus', '>= 0.13.4.pre2'
