@@ -28,7 +28,7 @@ describe Indexable do
 
   describe 'delete_search_index' do
     before :each do
-      Tire.stub_chain(:index, :delete).and_return(:deleted)
+      allow(Tire).to receive_message_chain(:index, :delete).and_return(:deleted)
     end
 
     it 'should create the index' do
