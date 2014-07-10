@@ -8,7 +8,7 @@ describe Indexable do
 
   describe '#search_index' do
     before :each do
-      Tire.should_receive(:index).with('directory_test_indexabletests').and_return(:index)
+      expect(Tire).to receive(:index).with('directory_test_indexabletests').and_return(:index)
     end
 
     it 'should return the Tire index' do
@@ -18,7 +18,7 @@ describe Indexable do
 
   describe 'create_search_index' do
     before :each do
-      Tire.should_receive(:index).with('directory_test_indexabletests').and_return(:index)
+      expect(Tire).to receive(:index).with('directory_test_indexabletests').and_return(:index)
     end
 
     it 'should create the index' do
@@ -38,8 +38,8 @@ describe Indexable do
 
   describe 'recreate_search_index' do
     before :each do
-      IndexableTest.should_receive(:delete_search_index)
-      IndexableTest.should_receive(:create_search_index)
+      expect(IndexableTest).to receive(:delete_search_index)
+      expect(IndexableTest).to receive(:create_search_index)
     end
 
     it 'should create the index' do

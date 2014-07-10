@@ -10,6 +10,6 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe Admin::PeopleHelper do
+describe Admin::PeopleHelper, :type => :helper do
 
 end

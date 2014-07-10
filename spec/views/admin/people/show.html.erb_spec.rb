@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'admin/people/show' do
+describe 'admin/people/show', :type => :view do
   before(:each) do
     @person = assign(:person, Fabricate(:person))
   end

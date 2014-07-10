@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PeopleController, elasticsearch: true do
+describe PeopleController, type: :controller, elasticsearch: true do
 
   describe 'GET #index' do
     it 'responds successfully with an HTTP 200 status code' do

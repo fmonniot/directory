@@ -23,8 +23,8 @@ describe Directory::LdapImport do
 
   describe '#import_all' do
     it 'import each person found in ldap' do
-      subject.ldap.should_receive(:search).and_yield :entry
-      subject.should_receive(:import_one).once
+      expect(subject.ldap).to receive(:search).and_yield :entry
+      expect(subject).to receive(:import_one).once
 
       subject.import_all
     end
@@ -42,7 +42,7 @@ describe Directory::LdapImport do
           email: entry.mail.first.force_encoding('utf-8'),
           year_entrance: Time.now.year).delete
 
-        PictureUploader.stub(:download!)
+        allow(PictureUploader).to receive(:download!)
       end
 
       it 'save the person' do
@@ -57,7 +57,7 @@ describe Directory::LdapImport do
       end
 
       it 'download the correct picture' do
-        PictureUploader.any_instance.should_receive(:download!).with('http://trombi.tem-tsp.eu/photo.php?uid=logindoesntexist&h=572&w=428').exactly(1).times
+        expect_any_instance_of(PictureUploader).to receive(:download!).with('http://trombi.tem-tsp.eu/photo.php?uid=logindoesntexist&h=572&w=428').exactly(1).times
         subject.import_one entry
       end
     end
@@ -73,7 +73,7 @@ describe Directory::LdapImport do
                                     mail: [person.email]) }
 
       it 'update this person' do
-        subject.should_receive(:update_one).with(person).and_return true
+        expect(subject).to receive(:update_one).with(person).and_return true
         subject.import_one entry
       end
     end
@@ -83,12 +83,12 @@ describe Directory::LdapImport do
   describe '#update_people_in_school' do
 
     before :each do
-      Person.stub(:in_school).and_return([person, person])
-      subject.stub(:update_one).and_return true
+      allow(Person).to receive(:in_school).and_return([person, person])
+      allow(subject).to receive(:update_one).and_return true
     end
 
     it 'update each student' do
-      subject.should_receive(:update_one).exactly(2).times
+      expect(subject).to receive(:update_one).exactly(2).times
 
       subject.update_people_in_school
     end
@@ -97,28 +97,28 @@ describe Directory::LdapImport do
   describe '#update_one' do
 
     before :each do
-      subject.ldap.stub(:search).and_return(nil)
-      person.stub(:save!)
+      allow(subject.ldap).to receive(:search).and_return(nil)
+      allow(person).to receive(:save!)
     end
 
     it 'save the person' do
-      person.should_receive(:save!).once
+      expect(person).to receive(:save!).once
 
       subject.update_one person
     end
 
     context 'year_out attribute' do
       it 'update year_out if it is not in the ldap' do
-        subject.ldap.stub(:search).and_return([1])
-        person.stub(:year_out).and_return nil
+        allow(subject.ldap).to receive(:search).and_return([1])
+        allow(person).to receive(:year_out).and_return nil
 
-        person.should_receive(:year_out=).with Time.now.year
+        expect(person).to receive(:year_out=).with Time.now.year
 
         subject.update_one person
       end
 
       it 'do not update year_out if it is in the ldap' do
-        person.should_receive(:year_out=).exactly(0).times
+        expect(person).to receive(:year_out=).exactly(0).times
 
         subject.update_one person
       end
@@ -126,14 +126,14 @@ describe Directory::LdapImport do
 
     context 'remote_picture_url attribute' do
       it 'add remote url if have no picture' do
-        person.stub(:picture?).and_return false
-        person.should_receive(:remote_picture_url=).with "http://trombi.tem-tsp.eu/photo.php?uid=#{person.login}&h=572&w=428"
+        allow(person).to receive(:picture?).and_return false
+        expect(person).to receive(:remote_picture_url=).with "http://trombi.tem-tsp.eu/photo.php?uid=#{person.login}&h=572&w=428"
 
         subject.update_one person
       end
       it 'do not add remote url if already have a picture' do
-        person.stub(:picture?).and_return true
-        person.should_receive(:remote_picture_url=).exactly(0).times
+        allow(person).to receive(:picture?).and_return true
+        expect(person).to receive(:remote_picture_url=).exactly(0).times
 
         subject.update_one person
       end

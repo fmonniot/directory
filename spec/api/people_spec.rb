@@ -1,7 +1,7 @@
 # spec/requests/api/v1/v1/messages_spec.rb
 require 'spec_helper'
 
-describe 'People API', elasticsearch: true do
+describe 'People API', type: :request, elasticsearch: true do
 
   before(:all) do
     Fabricate.times(151, :person)

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'admin/people/new' do
+describe 'admin/people/new', :type => :view do
   before(:each) do
     assign(:person, stub_model(Person).as_new_record)
   end

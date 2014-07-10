@@ -23,7 +23,7 @@ describe PictureUploader do
 
   context 'the xxxhdpi version' do
     it 'should be exactly 428 by 572 pixels' do
-      @uploader.should have_dimensions(428, 572)
+      expect(@uploader).to have_dimensions(428, 572)
     end
 
     it 'should store the picture as public/pictures/xxxhdpi/somefilename.jpg' do
@@ -33,7 +33,7 @@ describe PictureUploader do
 
   context 'the xxhdpi version' do
     it 'should be exactly 321 by 429 pixels' do
-      @uploader.xxhdpi.should have_dimensions(321,429)
+      expect(@uploader.xxhdpi).to have_dimensions(321,429)
     end
 
     it 'should store the picture as public/pictures/xxhdpi/somefilename.jpg' do
@@ -43,7 +43,7 @@ describe PictureUploader do
 
   context 'the xhdpi version' do
     it 'should be exactly 214 by 286 pixels' do
-      @uploader.xhdpi.should have_dimensions(214,286)
+      expect(@uploader.xhdpi).to have_dimensions(214,286)
     end
 
     it 'should store the picture as public/pictures/xhdpi/somefilename.jpg' do
@@ -53,7 +53,7 @@ describe PictureUploader do
 
   context 'the hdpi version' do
     it 'should be exactly 160 by 214 pixels' do
-      @uploader.hdpi.should have_dimensions(160,214)
+      expect(@uploader.hdpi).to have_dimensions(160,214)
     end
 
     it 'should store the picture as public/pictures/hdpi/somefilename.jpg' do
@@ -63,7 +63,7 @@ describe PictureUploader do
 
   context 'the mdpi version' do
     it 'should be exactly 107 by 143 pixels' do
-      @uploader.mdpi.should have_dimensions(107,143)
+      expect(@uploader.mdpi).to have_dimensions(107,143)
     end
 
     it 'should store the picture as public/pictures/mdpi/somefilename.jpg' do

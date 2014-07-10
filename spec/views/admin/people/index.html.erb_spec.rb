@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'admin/people/index' do
+describe 'admin/people/index', :type => :view do
   before(:each) do
     assign(:people, Kaminari.paginate_array([
       Fabricate(:person),

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Person do
+describe Person, :type => :model do
   before(:each) do
     @person = Fabricate(:person, login: 'login')
   end
@@ -20,9 +20,9 @@ describe Person do
   end
 
   it 'desindex correctly' do
-    expect(@person.desindex).to be_true
+    expect(@person.desindex).to be_truthy
     
-    expect(@person.indexable).to be_false
+    expect(@person.indexable).to be_falsey
   end
 
   context 'with elasticsearch', elasticsearch: true do

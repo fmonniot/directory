@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Visit do
+describe Visit, :type => :model do
   context 'with elasticsearch', elasticsearch: true do
     before :each do
       Visit.recreate_search_index

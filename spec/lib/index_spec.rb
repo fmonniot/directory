@@ -20,7 +20,7 @@ describe Directory::Index do
   describe '#recreate' do
 
     it 'recreate ES index of each models' do
-      Model.should_receive(:recreate_search_index)
+      expect(Model).to receive(:recreate_search_index)
       subject.recreate
     end
 
@@ -28,7 +28,7 @@ describe Directory::Index do
       subject { Directory::Index.new(Model, Model, Model, Model) }
 
       it 'recreate ES index of each models' do
-        Model.should_receive(:recreate_search_index).exactly(4).times
+        expect(Model).to receive(:recreate_search_index).exactly(4).times
         subject.recreate
       end
     end
@@ -36,16 +36,16 @@ describe Directory::Index do
 
   describe '#populate' do
     before :each do
-      Tire.stub(:index).and_return(Model)
-      Model.stub(:index_name)
+      allow(Tire).to receive(:index).and_return(Model)
+      allow(Model).to receive(:index_name)
     end
 
     it 'should import and refresh each model ES index' do
-      Model.should_receive(:import_all)
+      expect(Model).to receive(:import_all)
 
-      Tire.should_receive(:index)
-      Model.should_receive(:index_name)
-      Model.should_receive(:refresh)
+      expect(Tire).to receive(:index)
+      expect(Model).to receive(:index_name)
+      expect(Model).to receive(:refresh)
 
       subject.populate
     end

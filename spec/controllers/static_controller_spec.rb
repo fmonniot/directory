@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe StaticController do
+describe StaticController, :type => :controller do
 
   describe 'GET developer' do
     it 'returns http success' do
       get 'developer'
-      response.should be_success
+      expect(response).to be_success
     end
   end
 
