@@ -73,6 +73,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-activemodel-mocks'
   gem 'fabrication'
   gem 'teaspoon'
   gem 'zeus', '>= 0.13.4.pre2'
