@@ -1,8 +1,5 @@
 source 'https://rubygems.org'
 
-#ruby-gemset=directory
-ruby '2.1.0'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.1'
 
@@ -13,7 +10,7 @@ gem 'mongoid', '~> 4.0.0'
 gem 'kaminari'
 
 # Custom serializer for better json api
-gem 'active_model_serializers'
+gem 'active_model_serializers', '<0.9'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
